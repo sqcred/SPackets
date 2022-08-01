@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2022 sqcred
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package com.sqcred.spackets;
 
 
@@ -17,35 +27,28 @@ public class PacketReceiver {
     private final int port;
 
     @Getter
-    private final boolean debug;
+    private boolean debug;
 
     @Getter
     private String token = "undefined";
 
-    public PacketReceiver(String hostname, int port, boolean debug, String token, IReceiver iReceiver){
+    public PacketReceiver(String hostname, int port, IReceiver iReceiver, String token){
         this.iReceiver = iReceiver;
         this.hostname = hostname;
         this.port = port;
-        this.debug = debug;
         if(token != null){
             this.token = token;
         }
-        new Thread(() -> new ServerSocket(this), "SimplePacketSystem - Server").start();
+        new Thread(() -> new ServerSocket(this), "SPackets - Server").start();
     }
 
     public PacketReceiver(String hostname, int port, IReceiver iReceiver){
-        this(hostname, port, false, null, iReceiver);
-    }
-
-    public PacketReceiver(String hostname, int port, String token, IReceiver iReceiver){
-        this(hostname, port, false, token, iReceiver);
+        this(hostname, port, iReceiver, null);
     }
 
     public void handlePacket(Packet packet){
         // Call method on Listener
         try {
-            //Method method = iReceiver.getClass().getMethod("onPacket", handshake.getClass());
-            //method.invoke(iReceiver, handshake);
 
             for(Method method : iReceiver.getClass().getMethods()){
                 for(Class<?> type : method.getParameterTypes()){
@@ -55,8 +58,14 @@ public class PacketReceiver {
                 }
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
-            System.out.println("[SimplePacketSystem] Unknown error accrued: " + e.getMessage());
+            if(debug){
+                System.out.println("[SPackets] Unknown error accrued: " + e.getMessage());
+            }
         }
+    }
+
+    public void enableDebug(){
+        this.debug = true;
     }
 
 }

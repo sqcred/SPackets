@@ -8,21 +8,34 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.sqcred.spackets;
+package com.sqcred.spackets.packets;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.sqcred.spackets.Packet;
 
-public class Packets {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-    private static final Map<Byte, Class<? extends Packet>> packets = new HashMap<>();
+@AllArgsConstructor
+@NoArgsConstructor
+public class StringPacket extends Packet {
 
-    public static void registerPacket(Class<? extends Packet> packet, byte id){
-        packets.putIfAbsent(id, packet);
+    @Getter
+    private String string;
+
+    @Override
+    public byte id() {
+        return -1;
     }
 
-    public static Class<? extends Packet> findPacketById(byte id){
-        return packets.get(id);
+    @Override
+    public byte[] encode() {
+        return string.getBytes();
+    }
+
+    @Override
+    public void decode(byte[] bytes) {
+        this.string = new String(bytes);
     }
 
 }

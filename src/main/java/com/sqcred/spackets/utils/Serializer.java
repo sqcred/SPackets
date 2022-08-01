@@ -8,21 +8,22 @@
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.sqcred.spackets;
+package com.sqcred.spackets.utils;
 
-import java.util.HashMap;
-import java.util.Map;
+public class Serializer {
 
-public class Packets {
+    // TODO add more datatypes
 
-    private static final Map<Byte, Class<? extends Packet>> packets = new HashMap<>();
+    public static class String {
 
-    public static void registerPacket(Class<? extends Packet> packet, byte id){
-        packets.putIfAbsent(id, packet);
-    }
+        public static byte[] serialize(java.lang.String string) {
+            return string.getBytes();
+        }
 
-    public static Class<? extends Packet> findPacketById(byte id){
-        return packets.get(id);
+        public static java.lang.String deserialize(byte[] bytes) {
+            return new java.lang.String(bytes);
+        }
+
     }
 
 }

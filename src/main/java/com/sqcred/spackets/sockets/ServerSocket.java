@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2022 sqcred
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package com.sqcred.spackets.sockets;
 
 import com.sqcred.spackets.Packet;
@@ -30,7 +40,7 @@ public class ServerSocket extends WebSocketServer {
     public void onOpen(WebSocket webSocket, ClientHandshake clientHandshake) {
         // Client connected
         if(receiver.isDebug()){
-            System.out.println("[SimplePacketSystem][Server] New client connected. (" + webSocket.getRemoteSocketAddress() + ")");
+            System.out.println("[SPackets][Server] New client connected. (" + webSocket.getRemoteSocketAddress() + ")");
         }
     }
 
@@ -38,7 +48,7 @@ public class ServerSocket extends WebSocketServer {
     public void onClose(WebSocket webSocket, int code, String reason, boolean remote) {
         // Client disconnected
         if(receiver.isDebug()){
-            System.out.println("[SimplePacketSystem][Server] Disconnected client " + webSocket.getRemoteSocketAddress() + " for reason: " + reason);
+            System.out.println("[SPackets][Server] Disconnected client " + webSocket.getRemoteSocketAddress() + " for reason: " + reason);
         }
     }
 
@@ -64,7 +74,7 @@ public class ServerSocket extends WebSocketServer {
 
         if(packetType == null){
             // Unknown packet
-            System.out.println("[SimplePacketSystem][Server] Received unknown packet with id " + id + ", ignoring...");
+            System.out.println("[SPackets][Server] Received unknown packet with id " + id + ", ignoring...");
             return;
         }
 
@@ -74,7 +84,7 @@ public class ServerSocket extends WebSocketServer {
 
             receiver.handlePacket(packet);
         } catch (InstantiationException | IllegalAccessException e) {
-            System.out.println("[SimplePacketSystem][Server] Packet " + packetType.getName() + " does not have an empty constructor, please create one, ignoring...");
+            System.out.println("[SPackets][Server] Packet " + packetType.getName() + " does not have an empty constructor, please create one, ignoring...");
         }
 
     }
@@ -82,14 +92,14 @@ public class ServerSocket extends WebSocketServer {
     @Override
     public void onError(WebSocket webSocket, Exception e) {
         if(receiver.isDebug()){
-            System.out.println("[SimplePacketSystem][Server] Unknown error accrued: " + e.getMessage());
+            System.out.println("[SPackets][Server] Unknown error accrued: " + e.getMessage());
         }
     }
 
     @Override
     public void onStart() {
         if(receiver.isDebug()){
-            System.out.println("[SimplePacketSystem][Server] Server started.");
+            System.out.println("[SPackets][Server] Server started.");
         }
     }
 
