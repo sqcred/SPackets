@@ -1,4 +1,4 @@
-package com.sqcred.packetsystem;
+package com.sqcred.spackets;
 
 public abstract class Packet {
 

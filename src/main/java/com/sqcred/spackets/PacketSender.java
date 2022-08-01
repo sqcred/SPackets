@@ -1,6 +1,6 @@
-package com.sqcred.packetsystem;
+package com.sqcred.spackets;
 
-import com.sqcred.packetsystem.sockets.ClientSocket;
+import com.sqcred.spackets.sockets.ClientSocket;
 
 import lombok.Getter;
 

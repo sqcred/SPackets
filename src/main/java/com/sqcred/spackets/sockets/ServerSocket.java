@@ -1,8 +1,8 @@
-package com.sqcred.packetsystem.sockets;
+package com.sqcred.spackets.sockets;
 
-import com.sqcred.packetsystem.Packet;
-import com.sqcred.packetsystem.PacketReceiver;
-import com.sqcred.packetsystem.Packets;
+import com.sqcred.spackets.Packet;
+import com.sqcred.spackets.PacketReceiver;
+import com.sqcred.spackets.Packets;
 
 import org.java_websocket.WebSocket;
 import org.java_websocket.drafts.Draft;

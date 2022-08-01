@@ -1,4 +1,4 @@
-package com.sqcred.packetsystem;
+package com.sqcred.spackets;
 
 import java.util.HashMap;
 import java.util.Map;

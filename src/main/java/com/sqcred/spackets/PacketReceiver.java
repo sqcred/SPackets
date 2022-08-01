@@ -1,7 +1,7 @@
-package com.sqcred.packetsystem;
+package com.sqcred.spackets;
 
 
-import com.sqcred.packetsystem.sockets.ServerSocket;
+import com.sqcred.spackets.sockets.ServerSocket;
 
 import lombok.Getter;
 

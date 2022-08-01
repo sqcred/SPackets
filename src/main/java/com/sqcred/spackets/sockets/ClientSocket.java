@@ -1,7 +1,7 @@
-package com.sqcred.packetsystem.sockets;
+package com.sqcred.spackets.sockets;
 
-import com.sqcred.packetsystem.Packet;
-import com.sqcred.packetsystem.PacketSender;
+import com.sqcred.spackets.Packet;
+import com.sqcred.spackets.PacketSender;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
