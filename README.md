@@ -1,4 +1,4 @@
-# SPackets
+# SPackets TCP
 
 SPackets is a simple Java packet system using websockets.
 
