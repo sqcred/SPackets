@@ -1,8 +1,5 @@
-# SPackets
+# SPackets TCP
 
-SPackets is a simple Java packet system using websockets.
+SPackets is a simple Java packet system using the builtin tcp sockets.
 
-For installation and usage see [Wiki](https://github.com/sqcred/SPackets/wiki)
-
-
-If you have any problems or suggestions, please open an issue :)
+NOT READY FOR USE YET
